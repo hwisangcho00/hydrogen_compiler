@@ -17,7 +17,7 @@ struct Token {
 
 class Tokenizer {
 public:
-    inline Tokenizer(std::string src):
+    inline explicit Tokenizer(std::string src):
         m_src(std::move(src))
     {
 
@@ -52,9 +52,11 @@ public:
                 buf.clear();
                 continue;
             } else if (peek().value() == ';') {
+                consume();
                 tokens.push_back({.type = TokenType::semi});
                 continue;
             } else if (std::isspace(peek().value())) {
+                consume();
                 continue;
             } else {
                 std::cerr << "You messed up!" << std::endl;
@@ -63,12 +65,14 @@ public:
 
         }
 
+        m_index = 0;
+
         return tokens;
     }
 private:
 
     [[nodiscard]] std::optional<char> peek(int ahead = 1) const {
-        if (m_index + ahead >= m_src.length()) {
+        if (m_index + ahead > m_src.length()) {
             return {};
         } else {
             return m_src.at(m_index);
@@ -81,5 +85,5 @@ private:
 
 
     const std::string m_src;
-    int m_index;
+    int m_index {0};
 };
