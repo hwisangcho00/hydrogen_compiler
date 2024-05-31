@@ -40,9 +40,8 @@ public:
                     exit(EXIT_FAILURE);
                 }
 
-                if (!peek().has_value() || peek().value().type != TokenType::semi) {
-                    std::cerr << "Invalid expression" << std::endl;
-                    exit(EXIT_FAILURE);
+                if (peek().has_value() && peek().value().type == TokenType::semi) {
+                    consume();
                 }
             }
         }
