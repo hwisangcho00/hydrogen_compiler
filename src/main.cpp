@@ -5,7 +5,8 @@
 #include <vector>
 
 #include "./tokenization.hpp"
-
+#include "./parser.hpp"
+#include "./generation.hpp"
 
 
 std::vector<Token> tokenize(const std::string& str) {
