@@ -8,11 +8,6 @@
 #include "./parser.hpp"
 #include "./generation.hpp"
 
-
-std::vector<Token> tokenize(const std::string& str) {
-
-}
-
 int main(int argc, char* argv[]) {
 
     if (argc != 2) {
